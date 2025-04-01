@@ -1,6 +1,6 @@
 -- CREATE
 INSERT INTO
-    Airplanes (airplane_id, tail_number, make, model, year)
+    Airplanes (tail_number, make, model, year)
 VALUES
     ('N457RJ', 'Cessna', '172M Skyhawk', 1976)
 ;
@@ -27,5 +27,5 @@ WHERE
 DELETE FROM
     Mechanics
 WHERE
-    id = 70
+    mechanic_id = 70
 ;

@@ -27,7 +27,10 @@ CREATE TABLE IF NOT EXISTS
         service_id INTEGER PRIMARY KEY AUTOINCREMENT,
         service_description TEXT,
         service_date DATE,
-        FOREIGN KEY (airplane_id) REFERENCES Airplanes(airplane_id),
+        tail_number TEXT,
+        part_id INTEGER,
+        mechanic_id INTEGER,
+        FOREIGN KEY (tail_number) REFERENCES Airplanes(tail_number),
         FOREIGN KEY (part_id) REFERENCES Parts(part_id)
         FOREIGN KEY (mechanic_id) REFERENCES Mechanics(mechanic_id)
 );

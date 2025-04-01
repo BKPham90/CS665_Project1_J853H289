@@ -1,6 +1,6 @@
+INSERT INTO
     Airplanes (tail_number, make, model, year)
 VALUES
-INSERT INTO
     ('N21126', 'Cessna', '172M Skyhawk', 1974),
     ('N147KD', 'Cessna', '152', 1979),
     ('N900XP', 'Beechcraft','35 Bonanza', 1970),
