@@ -1,6 +1,7 @@
 import sqlite3
 
 from tkinter import *
+from Commands import *
 
 connection = sqlite3.connect("GA_Maintenance.db")
 cursor = connection.cursor()
@@ -25,21 +26,33 @@ window.title("General Aviation Maintence")
 dataTextBox = Text(window)
 dataTextBox.pack()
 
-def displayData():
-    cursor.execute("""
-                   SELECT *
-                   FROM Airplanes
-                   ORDER BY tail_number
-                   """
-    )
-    results = cursor.fetchall()
-    for row in results:
-        for column in row:
-            dataTextBox.insert(END, column)
-            dataTextBox.insert(END, "\t")
-        dataTextBox.insert(END, "\n")
+displayAirplanesBtn = Button(
+    window,
+    text = "Display Airplanes",
+    command = lambda: DisplayAirplanes(cursor, dataTextBox)
+)
+displayAirplanesBtn.pack()
 
-displayData()
+displayMechanicsBtn = Button(
+    window,
+    text = "Display Mechanics",
+    command = lambda: DisplayMechanics(cursor, dataTextBox)
+)
+displayMechanicsBtn.pack()
+
+displayPartsBtn = Button(
+    window,
+    text = "Display Parts",
+    command = lambda: DisplayParts(cursor, dataTextBox)
+)
+displayPartsBtn.pack()
+
+displayServices = Button(
+    window,
+    text = "Display Services",
+    command = lambda: DisplayServices(cursor, dataTextBox)
+)
+displayServices.pack()
 
 window.mainloop()
 
