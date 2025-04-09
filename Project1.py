@@ -1,10 +1,9 @@
 import sqlite3
 
 from tkinter import *
-from Commands import *
+from DatabaseController import *
 
-connection = sqlite3.connect("GA_Maintenance.db")
-cursor = connection.cursor()
+controller = DatabaseController(sqlite3.connect("GA_Maintenance.db"))
 
 # createFile = open("create.sql", "r")
 # createCommands = createFile.read().split(';')
@@ -29,31 +28,50 @@ dataTextBox.pack()
 displayAirplanesBtn = Button(
     window,
     text = "Display Airplanes",
-    command = lambda: DisplayAirplanes(cursor, dataTextBox)
+    command = lambda: controller.DisplayAirplanes(dataTextBox)
 )
 displayAirplanesBtn.pack()
 
 displayMechanicsBtn = Button(
     window,
     text = "Display Mechanics",
-    command = lambda: DisplayMechanics(cursor, dataTextBox)
+    command = lambda: controller.DisplayMechanics(dataTextBox)
 )
 displayMechanicsBtn.pack()
 
 displayPartsBtn = Button(
     window,
     text = "Display Parts",
-    command = lambda: DisplayParts(cursor, dataTextBox)
+    command = lambda: controller.DisplayParts(dataTextBox)
 )
 displayPartsBtn.pack()
 
 displayServices = Button(
     window,
     text = "Display Services",
-    command = lambda: DisplayServices(cursor, dataTextBox)
+    command = lambda: controller.DisplayServices(dataTextBox)
 )
 displayServices.pack()
 
+deleteTableLabel = Label(window, text = "Enter table to delete from:")
+deleteTableLabel.pack()
+
+deleteTableEntry = Entry(window)
+deleteTableEntry.pack()
+
+deleteIdLabel = Label(window, text = "Enter id of record to delete:")
+deleteIdLabel.pack()
+
+deleteIdEntry = Entry(window)
+deleteIdEntry.pack()
+
+deleteRecordButton = Button(
+    window,
+    text = "Delete Record",
+    command = lambda: controller.DeleteRecord(deleteTableEntry.get(), deleteIdEntry.get())
+)
+deleteRecordButton.pack()
+
 window.mainloop()
 
-connection.close()
+controller.connection.close()
