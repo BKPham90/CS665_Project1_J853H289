@@ -6,6 +6,12 @@ class DatabaseController:
     def __init__(self, connection: Connection):
         self.connection = connection
         self.cursor = connection.cursor()
+        self.idNameLookup = {
+                "Airplanes": "tail_number",
+                "Mechanics": "mechanic_id",
+                "Parts": "part_id",
+                "Services": "service_id"
+        }
 
     def DisplayAirplanes(self, outputTextBox: Text):
         outputTextBox.delete('1.0', END)
@@ -71,14 +77,9 @@ class DatabaseController:
                 outputTextBox.insert(END, "\t")
             outputTextBox.insert(END, "\n")
 
-    def DeleteRecord(self, fromTable: str, id: str):
-        idNameLookup = {
-                "Airplanes": "tail_number",
-                "Mechanics": "mechanic_id",
-                "Parts": "part_id",
-                "Services": "service_id"
-        }
-        idName = idNameLookup.get(fromTable, "Unknown Table")
+    def DeleteRecord(self, fromTable: str, id):
+        idName = self.idNameLookup.get(fromTable, "Unknown Table")
+        if type(id) == str: id = f"'{id}'"
         if idName != "Unknown Table":
             self.cursor.execute(
                 f"""
@@ -87,3 +88,16 @@ class DatabaseController:
                 """
             )
             self.connection.commit()
+    
+    def UpdateRecord(self, fromTable: str, id, property: str, newValue):
+        idName = self.idNameLookup.get(fromTable, "Unknown Table")
+        if type(id) == str: id = f"'{id}'"
+        if type(newValue) == str: newValue = f"'{newValue}'"
+        if idName != "Unknown Table":
+            self.cursor.execute(
+                f"""
+                UPDATE {fromTable}
+                SET {property} = {newValue}
+                WHERE {idName} = {id}
+                """
+            )

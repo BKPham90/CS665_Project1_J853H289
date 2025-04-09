@@ -72,6 +72,37 @@ deleteRecordButton = Button(
 )
 deleteRecordButton.pack()
 
+updateTableLabel = Label(window, text = "Enter table make updates to:")
+updateTableLabel.pack()
+
+updateTableEntry = Entry(window)
+updateTableEntry.pack()
+
+updateIdLabel = Label(window, text = "Enter id of record to update:")
+updateIdLabel.pack()
+
+updateIdEntry = Entry(window)
+updateIdEntry.pack()
+
+updatePropertyLabel = Label(window, text = "Enter name of property to update:")
+updatePropertyLabel.pack()
+
+updatePropertyEntry = Entry(window)
+updatePropertyEntry.pack()
+
+updateValueLabel = Label(window, text = "Enter new value:")
+updateValueLabel.pack()
+
+updateValueEntry = Entry(window)
+updateValueEntry.pack()
+
+updateRecordButton = Button(
+    window,
+    text = "Update Record",
+    command = lambda: controller.UpdateRecord(updateTableEntry.get(), updateIdEntry.get(), updatePropertyEntry.get(), updateValueEntry.get())
+)
+updateRecordButton.pack()
+
 window.mainloop()
 
 controller.connection.close()
