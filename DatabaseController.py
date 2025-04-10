@@ -6,11 +6,11 @@ class DatabaseController:
     def __init__(self, connection: Connection):
         self.connection = connection
         self.cursor = connection.cursor()
-        self.idNameLookup = {
-                "Airplanes": "tail_number",
-                "Mechanics": "mechanic_id",
-                "Parts": "part_id",
-                "Services": "service_id"
+        self.fieldNameLookup = {
+                "Airplanes": ("tail_number", "make", "model", "year"),
+                "Mechanics": ("mechanic_id", "first_name", "last_name", "certifaction_last_renewed"),
+                "Parts": ("part_id", "part_name", "vendor_name", "airworthiness_certified"),
+                "Services": ("service_id", "service_description", "service_date", "tail_number", "part_id", "mechanic_id")
         }
 
     def DisplayAirplanes(self, outputTextBox: Text):
@@ -78,7 +78,7 @@ class DatabaseController:
             outputTextBox.insert(END, "\n")
 
     def DeleteRecord(self, fromTable: str, id):
-        idName = self.idNameLookup.get(fromTable, "Unknown Table")
+        idName = self.fieldNameLookup[fromTable][0]
         if type(id) == str: id = f"'{id}'"
         if idName != "Unknown Table":
             self.cursor.execute(
@@ -90,7 +90,7 @@ class DatabaseController:
             self.connection.commit()
     
     def UpdateRecord(self, fromTable: str, id, property: str, newValue):
-        idName = self.idNameLookup.get(fromTable, "Unknown Table")
+        idName = self.fieldNameLookup[fromTable][0]
         if type(id) == str: id = f"'{id}'"
         if type(newValue) == str: newValue = f"'{newValue}'"
         if idName != "Unknown Table":
@@ -101,3 +101,14 @@ class DatabaseController:
                 WHERE {idName} = {id}
                 """
             )
+            self.connection.commit()
+    
+    def CreateNewRecord(self, toTable: str, data: str):
+        columns = ", ".join(self.fieldNameLookup[toTable])
+        self.cursor.execute(
+            f"""
+            INSERT INTO {toTable} ({columns})
+            VALUES ({data})
+            """
+        )
+        self.connection.commit()

@@ -103,6 +103,25 @@ updateRecordButton = Button(
 )
 updateRecordButton.pack()
 
+createTableLabel = Label(window, text = "Enter table for new record:")
+createTableLabel.pack()
+
+createTableEntry = Entry(window)
+createTableEntry.pack()
+
+createDataLabel = Label(window, text = "Enter data for new record separated by commas:")
+createDataLabel.pack()
+
+createDataEntry = Entry(window)
+createDataEntry.pack()
+
+createTableButton = Button(
+    window,
+    text = "Create New Record",
+    command = lambda: controller.CreateNewRecord(createTableEntry.get(), createDataEntry.get())
+)
+createTableButton.pack()
+
 window.mainloop()
 
 controller.connection.close()
