@@ -1,4 +1,3 @@
-# import sqlite3
 import DatabaseController
 
 from tkinter import *

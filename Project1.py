@@ -2,6 +2,7 @@ import sqlite3
 import DatabaseController
 
 from DataDisplayControl import *
+from DeleteControl import *
 
 from tkinter import *
 
@@ -23,25 +24,7 @@ window = Tk()
 window.title("General Aviation Maintence")
 
 DataDisplay = DataDisplayControl(window)
-
-deleteTableLabel = Label(window, text = "Enter table to delete from:")
-deleteTableLabel.pack()
-
-deleteTableEntry = Entry(window)
-deleteTableEntry.pack()
-
-deleteIdLabel = Label(window, text = "Enter id of record to delete:")
-deleteIdLabel.pack()
-
-deleteIdEntry = Entry(window)
-deleteIdEntry.pack()
-
-deleteRecordButton = Button(
-    window,
-    text = "Delete Record",
-    command = lambda: DatabaseController.DeleteRecord(deleteTableEntry.get(), deleteIdEntry.get())
-)
-deleteRecordButton.pack()
+Deleter = DeleteControl(window)
 
 updateTableLabel = Label(window, text = "Enter table make updates to:")
 updateTableLabel.pack()
