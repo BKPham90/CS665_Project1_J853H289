@@ -22,6 +22,10 @@ def DisplayAirplanes(outputTextBox: Text):
         """
     )
     results = Cursor.fetchall()
+    for columnName in FieldNameLookup["Airplanes"]:
+        outputTextBox.insert(END, columnName)
+        outputTextBox.insert(END, " |\t")
+    outputTextBox.insert(END,f"\n{"-" * 40}\n")
     for row in results:
         for column in row:
             outputTextBox.insert(END, column)
@@ -38,6 +42,10 @@ def DisplayMechanics(outputTextBox: Text):
         """
     )
     results = Cursor.fetchall()
+    for columnName in FieldNameLookup["Mechanics"]:
+        outputTextBox.insert(END, columnName)
+        outputTextBox.insert(END, " |\t")
+    outputTextBox.insert(END,f"\n{"-" * 40}\n")
     for row in results:
         for column in row:
             outputTextBox.insert(END, column)
@@ -54,6 +62,10 @@ def DisplayParts(outputTextBox: Text):
         """
     )
     results = Cursor.fetchall()
+    for columnName in FieldNameLookup["Parts"]:
+        outputTextBox.insert(END, columnName)
+        outputTextBox.insert(END, " |\t")
+    outputTextBox.insert(END,f"\n{"-" * 40}\n")
     for row in results:
         for column in row:
             outputTextBox.insert(END, column)
@@ -70,6 +82,10 @@ def DisplayServices(outputTextBox: Text):
         """
     )
     results = Cursor.fetchall()
+    for columnName in FieldNameLookup["Services"]:
+        outputTextBox.insert(END, columnName)
+        outputTextBox.insert(END, " |\t")
+    outputTextBox.insert(END,f"\n{"-" * 40}\n")
     for row in results:
         for column in row:
             outputTextBox.insert(END, column)
@@ -123,6 +139,10 @@ def DisplayServicesForAirplane(outputTextBox: Text, tail_number: str):
         """
     )
     results = Cursor.fetchall()
+    for columnName in FieldNameLookup["Services"]:
+        outputTextBox.insert(END, columnName)
+        outputTextBox.insert(END, " |\t")
+    outputTextBox.insert(END,f"\n{"-" * 40}\n")
     for row in results:
         for column in row:
             outputTextBox.insert(END, column)
@@ -140,6 +160,10 @@ def DisplayServicesForMechanic(outputTextBox: Text, mechanic_id: int):
         """
     )
     results = Cursor.fetchall()
+    for columnName in FieldNameLookup["Services"]:
+        outputTextBox.insert(END, columnName)
+        outputTextBox.insert(END, " |\t")
+    outputTextBox.insert(END,f"\n{"-" * 40}\n")
     for row in results:
         for column in row:
             outputTextBox.insert(END, column)
