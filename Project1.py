@@ -1,9 +1,7 @@
 import sqlite3
+import DatabaseController
 
 from tkinter import *
-from DatabaseController import *
-
-controller = DatabaseController(sqlite3.connect("GA_Maintenance.db"))
 
 # createFile = open("create.sql", "r")
 # createCommands = createFile.read().split(';')
@@ -28,28 +26,28 @@ dataTextBox.pack()
 displayAirplanesBtn = Button(
     window,
     text = "Display Airplanes",
-    command = lambda: controller.DisplayAirplanes(dataTextBox)
+    command = lambda: DatabaseController.DisplayAirplanes(dataTextBox)
 )
 displayAirplanesBtn.pack()
 
 displayMechanicsBtn = Button(
     window,
     text = "Display Mechanics",
-    command = lambda: controller.DisplayMechanics(dataTextBox)
+    command = lambda: DatabaseController.DisplayMechanics(dataTextBox)
 )
 displayMechanicsBtn.pack()
 
 displayPartsBtn = Button(
     window,
     text = "Display Parts",
-    command = lambda: controller.DisplayParts(dataTextBox)
+    command = lambda: DatabaseController.DisplayParts(dataTextBox)
 )
 displayPartsBtn.pack()
 
 displayServices = Button(
     window,
     text = "Display Services",
-    command = lambda: controller.DisplayServices(dataTextBox)
+    command = lambda: DatabaseController.DisplayServices(dataTextBox)
 )
 displayServices.pack()
 
@@ -68,7 +66,7 @@ deleteIdEntry.pack()
 deleteRecordButton = Button(
     window,
     text = "Delete Record",
-    command = lambda: controller.DeleteRecord(deleteTableEntry.get(), deleteIdEntry.get())
+    command = lambda: DatabaseController.DeleteRecord(deleteTableEntry.get(), deleteIdEntry.get())
 )
 deleteRecordButton.pack()
 
@@ -99,7 +97,7 @@ updateValueEntry.pack()
 updateRecordButton = Button(
     window,
     text = "Update Record",
-    command = lambda: controller.UpdateRecord(updateTableEntry.get(), updateIdEntry.get(), updatePropertyEntry.get(), updateValueEntry.get())
+    command = lambda: DatabaseController.UpdateRecord(updateTableEntry.get(), updateIdEntry.get(), updatePropertyEntry.get(), updateValueEntry.get())
 )
 updateRecordButton.pack()
 
@@ -118,10 +116,10 @@ createDataEntry.pack()
 createTableButton = Button(
     window,
     text = "Create New Record",
-    command = lambda: controller.CreateNewRecord(createTableEntry.get(), createDataEntry.get())
+    command = lambda: DatabaseController.CreateNewRecord(createTableEntry.get(), createDataEntry.get())
 )
 createTableButton.pack()
 
 window.mainloop()
 
-controller.connection.close()
+DatabaseController.Connection.close()
