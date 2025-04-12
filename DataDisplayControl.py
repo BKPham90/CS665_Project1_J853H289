@@ -14,6 +14,9 @@ class DataDisplayControl:
         self.DataDisplay = Text(self.ControlFrame)
         self.DataDisplay.pack()
 
+        self.BottomBar = Frame(self.ControlFrame)
+        self.BottomBar.pack()
+
         self.DisplayAirplanesBtn = Button(
             self.TopBar,
             text = "Display Airplanes",
@@ -41,3 +44,29 @@ class DataDisplayControl:
             command = lambda: DatabaseController.DisplayServices(self.DataDisplay)
         )
         self.DisplayServicesBtn.pack(side="left")
+
+        self.DisplayServicesForAirplaneEntry = Entry(self.BottomBar)
+        self.DisplayServicesForAirplaneEntry.grid(row=1, column=0)
+
+        self.DisplayServicesForAirplaneBtn = Button(
+            self.BottomBar,
+            text = "Show Services for Airplane Id:",
+            command = lambda: DatabaseController.DisplayServicesForAirplane(
+                self.DataDisplay,
+                self.DisplayServicesForAirplaneEntry.get()
+            )
+        )
+        self.DisplayServicesForAirplaneBtn.grid(row=0, column=0)
+
+        self.DisplayServicesForMechanicEntry = Entry(self.BottomBar)
+        self.DisplayServicesForMechanicEntry.grid(row=1, column=1)
+
+        self.DisplayServicesForMechanicBtn = Button(
+            self.BottomBar,
+            text = "Show Services for Mechanic Id:",
+            command = lambda: DatabaseController.DisplayServicesForMechanic(
+                self.DataDisplay,
+                self.DisplayServicesForMechanicEntry.get()
+            )
+        )
+        self.DisplayServicesForMechanicBtn.grid(row=0, column=1)

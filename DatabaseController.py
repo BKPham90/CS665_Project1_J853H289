@@ -111,3 +111,37 @@ def CreateNewRecord(toTable: str, data: str):
         """
     )
     Connection.commit()
+
+def DisplayServicesForAirplane(outputTextBox: Text, tail_number: str):
+    outputTextBox.delete('1.0', END)
+    Cursor.execute(
+        f"""
+        SELECT *
+        FROM Services
+        WHERE tail_number = '{tail_number}'
+        ORDER BY service_date
+        """
+    )
+    results = Cursor.fetchall()
+    for row in results:
+        for column in row:
+            outputTextBox.insert(END, column)
+            outputTextBox.insert(END, "\t")
+        outputTextBox.insert(END, "\n")
+
+def DisplayServicesForMechanic(outputTextBox: Text, mechanic_id: int):
+    outputTextBox.delete('1.0', END)
+    Cursor.execute(
+        f"""
+        SELECT *
+        FROM Services
+        WHERE mechanic_id = {mechanic_id}
+        ORDER BY service_date
+        """
+    )
+    results = Cursor.fetchall()
+    for row in results:
+        for column in row:
+            outputTextBox.insert(END, column)
+            outputTextBox.insert(END, "\t")
+        outputTextBox.insert(END, "\n")
