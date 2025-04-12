@@ -1,6 +1,8 @@
 import sqlite3
 import DatabaseController
 
+from DataDisplayControl import *
+
 from tkinter import *
 
 # createFile = open("create.sql", "r")
@@ -20,36 +22,7 @@ from tkinter import *
 window = Tk()
 window.title("General Aviation Maintence")
 
-dataTextBox = Text(window)
-dataTextBox.pack()
-
-displayAirplanesBtn = Button(
-    window,
-    text = "Display Airplanes",
-    command = lambda: DatabaseController.DisplayAirplanes(dataTextBox)
-)
-displayAirplanesBtn.pack()
-
-displayMechanicsBtn = Button(
-    window,
-    text = "Display Mechanics",
-    command = lambda: DatabaseController.DisplayMechanics(dataTextBox)
-)
-displayMechanicsBtn.pack()
-
-displayPartsBtn = Button(
-    window,
-    text = "Display Parts",
-    command = lambda: DatabaseController.DisplayParts(dataTextBox)
-)
-displayPartsBtn.pack()
-
-displayServices = Button(
-    window,
-    text = "Display Services",
-    command = lambda: DatabaseController.DisplayServices(dataTextBox)
-)
-displayServices.pack()
+DataDisplay = DataDisplayControl(window)
 
 deleteTableLabel = Label(window, text = "Enter table to delete from:")
 deleteTableLabel.pack()
