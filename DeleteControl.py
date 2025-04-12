@@ -12,7 +12,7 @@ class DeleteControl:
             self.ControlFrame,
             text = "Enter table to delete from:"
         )
-        self.DeleteTableLabel.grid(row=0, column=0)
+        self.DeleteTableLabel.grid(row=0, column=0, sticky="e")
 
         self.DeleteTableEntry = Entry(self.ControlFrame)
         self.DeleteTableEntry.grid(row=0, column=1)
@@ -21,7 +21,7 @@ class DeleteControl:
             self.ControlFrame,
             text = "Enter id of record to delete:"
         )
-        self.DeleteIdLabel.grid(row=1, column=0)
+        self.DeleteIdLabel.grid(row=1, column=0, sticky="e")
 
         self.DeleteIdEntry = Entry(self.ControlFrame)
         self.DeleteIdEntry.grid(row=1, column=1)

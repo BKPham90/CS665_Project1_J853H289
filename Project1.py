@@ -3,6 +3,7 @@ import DatabaseController
 
 from DataDisplayControl import *
 from DeleteControl import *
+from UpdateControl import *
 
 from tkinter import *
 
@@ -25,37 +26,7 @@ window.title("General Aviation Maintence")
 
 DataDisplay = DataDisplayControl(window)
 Deleter = DeleteControl(window)
-
-updateTableLabel = Label(window, text = "Enter table make updates to:")
-updateTableLabel.pack()
-
-updateTableEntry = Entry(window)
-updateTableEntry.pack()
-
-updateIdLabel = Label(window, text = "Enter id of record to update:")
-updateIdLabel.pack()
-
-updateIdEntry = Entry(window)
-updateIdEntry.pack()
-
-updatePropertyLabel = Label(window, text = "Enter name of property to update:")
-updatePropertyLabel.pack()
-
-updatePropertyEntry = Entry(window)
-updatePropertyEntry.pack()
-
-updateValueLabel = Label(window, text = "Enter new value:")
-updateValueLabel.pack()
-
-updateValueEntry = Entry(window)
-updateValueEntry.pack()
-
-updateRecordButton = Button(
-    window,
-    text = "Update Record",
-    command = lambda: DatabaseController.UpdateRecord(updateTableEntry.get(), updateIdEntry.get(), updatePropertyEntry.get(), updateValueEntry.get())
-)
-updateRecordButton.pack()
+Updater = UpdateControl(window)
 
 createTableLabel = Label(window, text = "Enter table for new record:")
 createTableLabel.pack()
